@@ -13,10 +13,4 @@ describe('CartController', () => {
 
     cartController = app.get<CartController>(CartController);
   });
-
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(cartController.getHello()).toBe('Hello World!');
-    });
-  });
 });

@@ -4,7 +4,7 @@ import {
   ConflictException,
   NotFoundException,
 } from '@nestjs/common';
-import {LoginDto} from "./dto/login-user.dto"
+import { LoginDto } from './dto/login-user.dto';
 import { RegisterDto } from './dto/register-user.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';

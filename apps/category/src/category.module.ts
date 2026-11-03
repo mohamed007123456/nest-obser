@@ -25,7 +25,7 @@ import { join } from 'path';
     ClientsModule.register([
       {
         name: 'INVENTORY_SERVICE',
-        transport: Transport.GRPC,
+        transport: Transport.GRPC, 
         options: {
           package: 'inventory',
           protoPath: join(

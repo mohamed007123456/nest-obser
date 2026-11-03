@@ -7,7 +7,6 @@ package cart;
 service CartService {
   rpc GetCart (GetCartRequest) returns (GetCartResponse){}
   rpc ClearCart  (ClearCartRequest) returns (google.protobuf.Empty){}
- 
 }
 
 message ClearCartRequest {
@@ -19,11 +18,9 @@ message GetCartRequest {
 }
 
 message CartItems{
-
-    string productID = 1;
-    int32 quantity = 2;
-    double price = 3;
-
+   string productID = 1;
+   int32 quantity = 2;
+   double price = 3;
 }
 
 message GetCartResponse {

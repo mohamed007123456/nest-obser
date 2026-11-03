@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { CartService } from './cart.service';
 
 @Controller()
@@ -8,14 +8,14 @@ export class CartGrpcController {
 
   @GrpcMethod('CartService', 'GetCart')
   async getCart(data: { id: string }) {
-    if(!data.id)  throw new Error('Cart ID is required')
+    if(!data.id)  throw new RpcException('Cart ID is required')
    
       return this.cartService.getCartById(data.id);
   }
 
   @GrpcMethod('CartService', 'ClearCart')
   async clearCart(data: { id: string }) {
-    if(!data.id)  throw new Error('Cart ID is required')
+    if(!data.id)  throw new RpcException('Cart ID is required')
  
        return this.cartService.getCartClearById(data.id);
   }

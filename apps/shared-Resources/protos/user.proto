@@ -13,7 +13,6 @@ message UserExistRequest {
 
 message UserExistResponse {
    string id = 1;
- 
 }
 
 

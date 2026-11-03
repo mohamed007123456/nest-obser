@@ -17,7 +17,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    // Ye user ko return hoga (safe)
     response.status(status).json({
       success: false,
       statusCode: status,
@@ -27,7 +26,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
           : exception.message || 'Error',
     });
 
-    // Ye console mai show hoga developer ke liye
     console.error('INTERNAL ERROR:', exception);
   }
 }

@@ -19,7 +19,7 @@ export class ClerkAuthGuard implements CanActivate {
 
     try {
       const payload = await this.clerkService.verifyAuthToken(token);
-      request.user = payload; // attach user info to request
+      request.user = payload; 
       return true;
     } catch {
       throw new UnauthorizedException('Invalid token');

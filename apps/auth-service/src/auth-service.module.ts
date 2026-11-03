@@ -3,17 +3,20 @@ import { AuthServiceController } from './auth-service.controller';
 import { AuthService } from './auth-service.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './Schema/schema.auth';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
 
-    JwtModule.register({
+    JwtModule.registerAsync({
       global: true,
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
+      imports: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.getOrThrow<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '1h' },
+      }),
     }),
 
     MongooseModule.forRoot(process.env.Auth_MONGODB_URL as string),
@@ -27,13 +30,3 @@ import { JwtModule } from '@nestjs/jwt';
 })
 export class AuthServiceModule {}
 
-
-    /* JwtModule.registerAsync({
-+      global: true,
-+      imports: [ConfigModule],
-+      useFactory: (configService: ConfigService) => ({
-+        secret: configService.getOrThrow<string>('JWT_SECRET'),
-+        signOptions: { expiresIn: '1h' },
-+      }),
-+      inject: [ConfigService],
-+    }), */

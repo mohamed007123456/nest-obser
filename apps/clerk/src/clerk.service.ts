@@ -14,7 +14,7 @@ export class ClerkService {
       });
       return session;
     } catch (err) {
-      throw new Error('Invalid token ❌');
+      throw new Error('Invalid token');
     }
   }
 }
